@@ -7,7 +7,6 @@ import { NavigationItem } from "./navigation-item";
 import { ModeToggle } from "../mode-toggle";
 import { UserButton } from "@clerk/nextjs";
 import { db } from "@/lib/db";
-import { Server } from "@/prisma/generated/client";
 
 export const NavigationSidebar = async () => {
   const profile = await currentProfile();
@@ -16,7 +15,7 @@ export const NavigationSidebar = async () => {
     return redirect("/");
   }
 
-  const servers: Server[] = await db.server.findMany({
+  const servers = await db.server.findMany({
     where: {
       members: {
         some: {
@@ -31,7 +30,7 @@ export const NavigationSidebar = async () => {
       <NavigationAction />
       <Separator className="h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md w-10 mx-auto" />
       <ScrollArea className="flex-1 w-full">
-        {servers.map((server: Server) => (
+        {servers.map((server) => (
           <div key={server.id} className="mb-4">
             <NavigationItem
               id={server.id}

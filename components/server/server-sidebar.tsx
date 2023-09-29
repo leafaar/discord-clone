@@ -2,7 +2,7 @@ import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { ServerHeader } from "./server-header";
-import { Channel, ChannelType, Member } from "@/prisma/generated/client";
+import { ChannelType } from "@prisma/client";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -36,16 +36,16 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
     },
   });
   const textChannels = server?.channels.filter(
-    (channel: Channel) => channel.type === ChannelType.TEXT
+    (channel) => channel.type === ChannelType.TEXT
   );
   const audioChannels = server?.channels.filter(
-    (channel: Channel) => channel.type === ChannelType.AUDIO
+    (channel) => channel.type === ChannelType.AUDIO
   );
   const videoChannels = server?.channels.filter(
-    (channel: Channel) => channel.type === ChannelType.VIDEO
+    (channel) => channel.type === ChannelType.VIDEO
   );
   const members = server?.members.filter(
-    (member: Member) => member.profileId !== profile.id
+    (member) => member.profileId !== profile.id
   );
 
   if (!server) {
@@ -53,7 +53,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
   }
 
   const role = server.members.find(
-    (member: Member) => member.profileId === profile.id
+    (member) => member.profileId === profile.id
   )?.role;
 
   return (
