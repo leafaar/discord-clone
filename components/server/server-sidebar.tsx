@@ -53,7 +53,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
   }
 
   const role = server.members.find(
-    (member) => member.profileId === profile.id
+    (member: Member) => member.profileId === profile.id
   )?.role;
 
   return (
