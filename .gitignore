@@ -15,6 +15,11 @@
 # production
 /build
 
+# prisma
+/prisma/generated
+
+package-lock.json
+
 # misc
 .DS_Store
 *.pem
