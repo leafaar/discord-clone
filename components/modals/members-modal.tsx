@@ -13,7 +13,6 @@ import {
   ShieldQuestion,
 } from "lucide-react";
 import { useState } from "react";
-import { MemberRole } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
 import {
@@ -38,6 +37,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu";
+import { MemberRole } from "@/prisma/generated/client";
 
 const roleIconMap = {
   GUEST: null,
